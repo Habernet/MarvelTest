@@ -32,13 +32,18 @@
             // Marvel Key
             const marverlKey = "3825528115714235769b996819f21ef0";
             // Giphy Key
+            // CharID
 
-            // Marvel Query Built
-            var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?limit=10&apikey=" + marverlKey;
 
             $("#submit").on("click", (e) => {
                 e.preventDefault();
                 // Make call to Marvel for random character
+                var charID = Math.floor(Math.random() * 100);
+
+                // Marvel Query Built
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters/" + charID + "?limit=10&apikey=" + marverlKey;
+                console.log(marvelQuery);
+
                 $.ajax({
                     url: marvelQuery,
                     method: "GET"
