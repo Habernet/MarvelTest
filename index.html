@@ -17,6 +17,11 @@
     <button class="btn btn-primary" id="submit">Character search </button>
 
     <script>
+
+        var characters = [
+            "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "DeadPool", "Doctor-Strange"
+        ]
+
         $(document).ready(function () {
 
             // function createCharCard(response){
@@ -34,7 +39,7 @@
             firebase.initializeApp(config);
             database = firebase.database();
             // Marvel Key
-            const marverlKey = "3825528115714235769b996819f21ef0";
+            const marvelKey = "3825528115714235769b996819f21ef0";
             // Giphy Key
             // CharID
 
@@ -42,11 +47,12 @@
             $("#submit").on("click", (e) => {
                 e.preventDefault();
                 // Make call to Marvel for random character
-                var charID = Math.floor(Math.random() * 100);
+                var charIndex = Math.floor(Math.random() * 100);
+                var chartoSearch = characters[charIndex];
 
 
                 // Marvel Query Built
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?&limit=100&apikey=" + marverlKey;
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?&limit=100&apikey=" + marvelKey;
                 console.log(marvelQuery);
 
                 $.ajax({
