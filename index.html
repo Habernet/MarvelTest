@@ -52,7 +52,7 @@
 
 
                 // Marvel Query Built
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?" + chartoSearch +"&limit=2&apikey=" + marvelKey;
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch +"&limit=2&apikey=" + marvelKey;
                 console.log(marvelQuery);
 
                 $.ajax({
