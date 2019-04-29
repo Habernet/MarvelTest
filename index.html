@@ -17,7 +17,46 @@
     <button class="btn btn-primary" id="submit">Character search </button>
 
     <script>
-    //fire base
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBuVunkkdUj9Lh7ghjP2JmLXJLI42K55jQ",
+            authDomain: "marveltest-9558a.firebaseapp.com",
+            databaseURL: "https://marveltest-9558a.firebaseio.com",
+            projectId: "marveltest-9558a",
+            storageBucket: "marveltest-9558a.appspot.com",
+            messagingSenderId: "557399982087"
+        };
+        firebase.initializeApp(config);
+        database = firebase.database();
+        // Marvel Key
+        const marverlKey = "3825528115714235769b996819f21ef0";
+        // Giphy Key
+
+        // Marvel Query Built
+        var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?limit=10&apikey=" + marverlKey;
+
+        $("#submit").on("click", (e)=> {
+            e.preventDefault();
+            // Make call to Marvel for random character
+            $.ajax({
+                url: marvelQuery,
+                method: "GET"
+            }).then(response => {
+                console.log(response);
+            }).catch(err => console.log(err))
+        })
+
+// User comes to page. Clicks Battle Button
+// Two calls are made to marvel to get random character names
+// If the character name is in our firebase...load a character card based on firebase data.
+// If the name is not in our firebase... create JSON object to push to firebase based on:
+// Name from Marvel, giphy url (make a call with the name from marvel), description of character (from original Marvel call)
+// And initialize the battle creds to 0.
+
+// Now we should have two character cards on the screen that are represented in firebase.
+// Define on click event listener: when a user clicks a card...they are saying that they believe that character would win 
+// in a 1 v 1 fight.  Increment the battle creds of the winner.
+
     </script>
 </body>
 
