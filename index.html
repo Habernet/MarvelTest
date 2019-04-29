@@ -18,6 +18,10 @@
 
     <script>
         $(document).ready(function () {
+
+            function createCharCard(response){
+                var charName = response.
+            }
             // Initialize Firebase
             var config = {
                 apiKey: "AIzaSyBuVunkkdUj9Lh7ghjP2JmLXJLI42K55jQ",
@@ -40,8 +44,9 @@
                 // Make call to Marvel for random character
                 var charID = Math.floor(Math.random() * 100);
 
+
                 // Marvel Query Built
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters/Hulk?limit=10&apikey=" + marverlKey;
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?id=" + charID + "?limit=10&apikey=" + marverlKey;
                 console.log(marvelQuery);
 
                 $.ajax({
@@ -49,6 +54,7 @@
                     method: "GET"
                 }).then(response => {
                     console.log(response);
+                    
                 }).catch(err => console.log(err))
             })
 
