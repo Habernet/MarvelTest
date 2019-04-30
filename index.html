@@ -42,7 +42,7 @@
 
 
             var characters = [
-                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "Deadpool", "Doctor-Strange", "Black-Panther",
+                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Wolverine", "Thanos", "Black-Panther",
                 "Loki", "Magneto", "Cyclops", "Superman", "Black-Widow"
             ]
 
@@ -70,16 +70,19 @@
                 // Choose a random character from the pool that we know have descriptions.
                 var charIndex = Math.floor(Math.random() * 9);
                 var chartoSearch = characters[charIndex];
+                console.log(chartoSearch);
 
                 // Check firebase to see if character exists
                 database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
                     if (snapshot.exists()) {
-                        // Load a character card with the ALL of the information in firebase
                         snap = snapshot.val();
                         console.log("IT WORKED! " + snap);
+                        // Call createCharCard and pass it the character node in firebase
+
+
                     } else {
                         // Create the character based on calls
-                        console.log(chartoSearch);
+
                         // Marvel Query Built
                         var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
                         // Giphy Query Built
@@ -90,9 +93,8 @@
                             method: "GET"
                         }).then(response => {
                             console.log(response);
-                            response = response.data;
                             // Store description in variable
-                            var description = response.results[0].description;
+                            var description = response.data.results[0].description;
 
                             $.ajax({
                                 url: giphyQuery,
@@ -101,7 +103,6 @@
                                 console.log(response);
                                 // Store gif url in variable
                                 var gifURL = response.data[0].images.fixed_height.url;
-                                console.log(gifURL);
                                 // Initialize battlecred to 0
                                 var battleCred = 0;
 
@@ -112,7 +113,8 @@
                                     name: chartoSearch,
                                     gif: gifURL
                                 });
-                                // Load a character card with the ALL of the information in firebase
+                                // Call createCharCard and pass it the character node in firebase
+
                             }).catch(err => console.log(err))
                         }).catch(err => console.log(err))
                     }
