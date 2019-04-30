@@ -70,62 +70,54 @@
                 // Choose a random character from the pool that we know have descriptions.
                 var charIndex = Math.floor(Math.random() * 9);
                 var chartoSearch = characters[charIndex];
-                //Make ref to characters
 
                 // Check firebase to see if character exists
                 database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
                     if (snapshot.exists()) {
-                        console.log("IT WORKED! " + snapshot.val());
+                        // Load a character card with the ALL of the information in firebase
+                        snap = snapshot.val();
+                        console.log("IT WORKED! " + snap);
                     } else {
-                        console.log("Either it didn't work or it doesn't exist!");
+                        // Create the character based on calls
+                        console.log(chartoSearch);
+                        // Marvel Query Built
+                        var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
+                        // Giphy Query Built
+                        var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key=" + giphyKey;
+
+                        $.ajax({
+                            url: marvelQuery,
+                            method: "GET"
+                        }).then(response => {
+                            console.log(response);
+                            response = response.data;
+                            // Store description in variable
+                            var description = response.results[0].description;
+
+                            $.ajax({
+                                url: giphyQuery,
+                                method: "GET"
+                            }).then(response => {
+                                console.log(response);
+                                // Store gif url in variable
+                                var gifURL = response.data[0].images.fixed_height.url;
+                                console.log(gifURL);
+                                // Initialize battlecred to 0
+                                var battleCred = 0;
+
+                                // Create object to push to database
+                                database.ref("characters/").push({
+                                    description: description,
+                                    battlecred: battleCred,
+                                    name: chartoSearch,
+                                    gif: gifURL
+                                });
+                                // Load a character card with the ALL of the information in firebase
+                            }).catch(err => console.log(err))
+                        }).catch(err => console.log(err))
                     }
                 });
-
-
-
-
-                // Marvel Query Built
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
-                console.log("Marvel Query: " + marvelQuery);
-                // Giphy Query Built
-                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key=" + giphyKey;
-                console.log("Giphy Query: " + giphyQuery);
-
-                $.ajax({
-                    url: marvelQuery,
-                    method: "GET"
-                }).then(response => {
-                    console.log(response);
-                    response = response.data;
-                    // Store description in variable
-                    var description = response.results[0].description;
-                    console.log(description);
-
-                    $.ajax({
-                        url: giphyQuery,
-                        method: "GET"
-                    }).then(response => {
-                        console.log(response);
-                        // Store gif url in variable
-                        var gifURL = response.data[0].images.fixed_height.url;
-                        console.log(gifURL);
-                        // Initialize battlecred to 0
-                        var battleCred = 0;
-
-                        // Create object to push to database
-                        database.ref("characters/").push({
-                            description: description,
-                            battlecred: battleCred,
-                            name: chartoSearch,
-                            gif: gifURL
-                        });
-                        // Create char card based on firebase data
-
-
-                    }).catch(err => console.log(err))
-                }).catch(err => console.log(err))
             })
-
         })
 
 
