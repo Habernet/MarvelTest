@@ -75,8 +75,9 @@
                 // Check firebase to see if character exists
                 database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
                     if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        console.log("exists!", userData);
+                        console.log("IT WORKED! " + snapshot.val());
+                    } else {
+                        console.log("Either it didn't work or it doesn't exist!");
                     }
                 });
 
