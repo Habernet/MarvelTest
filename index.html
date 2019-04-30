@@ -75,7 +75,7 @@
                 // Check firebase to see if character exists
                 database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
                     if (snapshot.exists()) {
-                        snap = snapshot.val();
+                        var snap = snapshot.val();
                         console.log("IT WORKED! " + snap);
                         // Call createCharCard and pass it the character node in firebase
 
