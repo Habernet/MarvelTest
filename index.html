@@ -85,20 +85,28 @@
                     method: "GET"
                 }).then(response => {
                     console.log(response);
+                    response = response.data;
                     // Store description in variable
+                    var description = response.results[0].comics.description;
+                    console.log(description);
+                    
                     $.ajax({
                         url: giphyQuery,
                         method: "GET"
                     }).then(response => {
                         console.log(response);
                         // Store gif url in variable
+                        var gifURL = response.data[0].images.fixed_height.url;
+                        console.log(gifURL);
                         // Initialize battlecred to 0
+                        var battleCred = 0;
+
                         // Create object to push to database
                         // database.ref("characters/").push({
                         //     name: chartoSearch,
                         //     gif: gifURL,
                         //     description: description,
-                        //     battlecred: battlecred
+                        //     battlecred: battleCred
                         // });
 
                         // Create char card based on firebase data
