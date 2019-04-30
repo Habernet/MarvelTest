@@ -73,7 +73,7 @@
                 //Make ref to characters
 
                 // Check firebase to see if character exists
-                database.ref.child("characters").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
+                firebase.database().ref.child("characters").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
                     if (snapshot.exists()) {
                         const userData = snapshot.val();
                         console.log("exists!", userData);
