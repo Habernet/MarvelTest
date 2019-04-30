@@ -15,6 +15,23 @@
 
 <body>
     <button class="btn btn-primary" id="submit">Character search </button>
+    <!-- <div class="card">
+        <h5 class="card-header text-center">
+            HULK
+        </h5>
+        <img class="card-img-top" src="https://media.giphy.com/media/aS8ypUweGOXMA/giphy.gif" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Power Points:</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="card-link">Call to Action</a>
+        </div>
+    </div> -->
 
     <script>
 
@@ -27,6 +44,8 @@
             // function createCharCard(response){
             //     var charName = response.
             // }
+
+
             // Initialize Firebase
             var config = {
                 apiKey: "AIzaSyBuVunkkdUj9Lh7ghjP2JmLXJLI42K55jQ",
@@ -38,29 +57,52 @@
             };
             firebase.initializeApp(config);
             database = firebase.database();
+
             // Marvel Key
             const marvelKey = "3825528115714235769b996819f21ef0";
             // Giphy Key
-            // CharID
+            const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
 
 
             $("#submit").on("click", (e) => {
                 e.preventDefault();
+                // Marvel Query Built
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
+                // Giphy Query Built
+                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key" + giphyKey;
+
+
+
+
                 // Make call to Marvel for random character
                 var charIndex = Math.floor(Math.random() * 9);
                 var chartoSearch = characters[charIndex];
-
-
-                // Marvel Query Built
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch +"&limit=2&apikey=" + marvelKey;
-                console.log(marvelQuery);
 
                 $.ajax({
                     url: marvelQuery,
                     method: "GET"
                 }).then(response => {
                     console.log(response);
-                    
+                    // Store description in variable
+                    $.ajax({
+                        url: giphyQuery,
+                        method: "GET"
+                    }).then(response => {
+                        console.log(response);
+                        // Store gif url in variable
+                        // Initialize battlecred to 0
+                        // Create object to push to database
+                        // database.ref("characters/").push({
+                        //     name: chartoSearch,
+                        //     gif: gifURL,
+                        //     description: description,
+                        //     battlecred: battlecred
+                        // });
+
+                        // Create char card based on firebase data
+
+
+                    }).catch(err => console.log(err))
                 }).catch(err => console.log(err))
             })
 
