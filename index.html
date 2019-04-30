@@ -42,7 +42,7 @@
 
 
             var characters = [
-                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "DeadPool", "Doctor-Strange"
+                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "Deadpool", "Doctor-Strange"
             ]
 
 
@@ -66,13 +66,22 @@
 
             $("#submit").on("click", (e) => {
                 e.preventDefault();
-
-
-
-
-                // Make call to Marvel for random character
+                // Choose a random character from the pool that we know have descriptions.
                 var charIndex = Math.floor(Math.random() * 9);
                 var chartoSearch = characters[charIndex];
+                //Make ref to characters
+
+                // Check firebase to see if character exists
+                database.child("characters").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        console.log("exists!", userData);
+                    }
+                });
+
+
+
+
                 // Marvel Query Built
                 var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
                 console.log("Marvel Query: " + marvelQuery);
@@ -89,7 +98,7 @@
                     // Store description in variable
                     var description = response.results[0].description;
                     console.log(description);
-                    
+
                     $.ajax({
                         url: giphyQuery,
                         method: "GET"
