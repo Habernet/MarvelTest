@@ -42,7 +42,8 @@
 
 
             var characters = [
-                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "Deadpool", "Doctor-Strange"
+                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "Deadpool", "Doctor-Strange", "Black-Panther",
+                "Loki", "Magneto", "Cyclops", "Superman", "Black-Widow"
             ]
 
 
@@ -72,7 +73,7 @@
                 //Make ref to characters
 
                 // Check firebase to see if character exists
-                database.child("characters").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
+                database.ref.child("characters").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
                     if (snapshot.exists()) {
                         const userData = snapshot.val();
                         console.log("exists!", userData);
