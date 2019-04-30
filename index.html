@@ -103,10 +103,10 @@
 
                         // Create object to push to database
                         database.ref("characters/").push({
-                            name: chartoSearch,
-                            gif: gifURL,
                             description: description,
-                            battlecred: battleCred
+                            battlecred: battleCred,
+                            name: chartoSearch,
+                            gif: gifURL
                         });
                         // Create char card based on firebase data
 
