@@ -34,16 +34,16 @@
     </div> -->
 
     <script>
-
-        var characters = [
-            "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "DeadPool", "Doctor-Strange"
-        ]
-
         $(document).ready(function () {
 
             // function createCharCard(response){
             //     var charName = response.
             // }
+
+
+            var characters = [
+                "Spider-Man", "Thor", "Hulk", "Iron-Man", "Captain-America", "Wolverine", "Thanos", "DeadPool", "Doctor-Strange"
+            ]
 
 
             // Initialize Firebase
@@ -77,7 +77,7 @@
                 var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
                 console.log("Marvel Query: " + marvelQuery);
                 // Giphy Query Built
-                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key" + giphyKey;
+                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key=" + giphyKey;
                 console.log("Giphy Query: " + giphyQuery);
 
                 $.ajax({
