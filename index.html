@@ -66,10 +66,6 @@
 
             $("#submit").on("click", (e) => {
                 e.preventDefault();
-                // Marvel Query Built
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
-                // Giphy Query Built
-                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key" + giphyKey;
 
 
 
@@ -77,6 +73,12 @@
                 // Make call to Marvel for random character
                 var charIndex = Math.floor(Math.random() * 9);
                 var chartoSearch = characters[charIndex];
+                // Marvel Query Built
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
+                console.log("Marvel Query: " + marvelQuery);
+                // Giphy Query Built
+                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key" + giphyKey;
+                console.log("Giphy Query: " + giphyQuery);
 
                 $.ajax({
                     url: marvelQuery,
