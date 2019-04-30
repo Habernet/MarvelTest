@@ -102,13 +102,12 @@
                         var battleCred = 0;
 
                         // Create object to push to database
-                        // database.ref("characters/").push({
-                        //     name: chartoSearch,
-                        //     gif: gifURL,
-                        //     description: description,
-                        //     battlecred: battleCred
-                        // });
-
+                        database.ref("characters/").push({
+                            name: chartoSearch,
+                            gif: gifURL,
+                            description: description,
+                            battlecred: battleCred
+                        });
                         // Create char card based on firebase data
 
 
