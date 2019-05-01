@@ -53,10 +53,6 @@ $(document).ready(function () {
     $("#start-fight").on("click", (e) => {
         e.preventDefault();
 
-        // While numOfChars < 2
-        //      do the stuff
-        //      at end of stuff increment numOfChars by 1
-        // Choose a random character from the pool that we know have descriptions.
         while (numOfChars < 2) {
             var charIndex = Math.floor(Math.random() * 9);
             var chartoSearch = characters[charIndex];
