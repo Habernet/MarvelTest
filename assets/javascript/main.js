@@ -73,7 +73,7 @@ $(document).ready(function () {
         //      do the stuff
         //      at end of stuff increment numOfChars by 1
         // Choose a random character from the pool that we know have descriptions.
-        var charIndex = Math.floor(Math.random() * 15);
+        var charIndex = Math.floor(Math.random() * 11);
         var chartoSearch = characters[charIndex];
         console.log(chartoSearch);
 
