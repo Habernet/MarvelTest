@@ -28,7 +28,7 @@ $(document).ready(function () {
     // List of characters we know have descriptions in Marvel.
     var characters = [
         "Spider-Man", "Thor", "Hulk", "Wolverine", "Thanos",
-        "Loki", "Magneto", "Cyclops", "Deadpool", "Captain-America"
+        "Loki", "Magneto", "Cyclops", "Deadpool"
     ];
     // Marvel Key
     const marvelKey = "3825528115714235769b996819f21ef0";
@@ -58,7 +58,7 @@ $(document).ready(function () {
         //      at end of stuff increment numOfChars by 1
         // Choose a random character from the pool that we know have descriptions.
         while (numOfChars < 2) {
-            var charIndex = Math.floor(Math.random() * 10);
+            var charIndex = Math.floor(Math.random() * 9);
             var chartoSearch = characters[charIndex];
             console.log(chartoSearch);
 
