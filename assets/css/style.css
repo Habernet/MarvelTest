@@ -10,14 +10,17 @@ h1 {
     text-align: center;
 }
 
-h1, button {
+h1,
+button {
     font-family: 'Patua One', cursive;
+}
+.winner {
+    font-size: 12px;
 }
 
 footer {
     position: sticky;
 }
-
 .fullscreen-bg {
     position: fixed;
     top: 0;
@@ -53,6 +56,7 @@ footer {
 .list-group-item {
     background-color: #000000b6;
     /* border: 1px solid rgba(255, 255, 255, 0.125); */
+
 }
 
 .card-header {
@@ -60,41 +64,42 @@ footer {
 }
 
 button {
-    color: #00b7ff;
+    color:#00b7ff;
     background-color: #ffffff00;
-    border: none;
-    position: relative;
-    height: 60px;
-    font-size: 1.6em;
-    padding: 0 2em;
-    cursor: pointer;
-    transition: 800ms ease all;
-    outline: none;
-}
-
-button:hover {
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{ 
     color: #facd03;
-}
-
-button:before, button:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
     background: #facd03;
-    transition: 200ms ease all;
-}
+    transition:200ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:100%;
+    transition:400ms ease all;
+  }
 
-button:after {
-    right: inherit;
-    top: inherit;
-    left: 0;
-    bottom: 0;
-}
 
-button:hover:before, button:hover:after {
-    width: 100%;
-    transition: 400ms ease all;
-}
+  .winner {
+      font-size: 16px;
+  }
