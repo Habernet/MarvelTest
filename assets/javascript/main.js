@@ -50,7 +50,7 @@ $(document).ready(function () {
     database = firebase.database();
 
 
-    $("#submit").on("click", (e) => {
+    $("#start-fight").on("click", (e) => {
         e.preventDefault();
 
         // While numOfChars < 2
@@ -105,8 +105,9 @@ $(document).ready(function () {
                     }).catch(err => console.log(err))
                 }
             });
-            // increment by one
             numOfChars++;
         }
+        // Hide the submit button
+        $("start-fight").hide();
     })
 })
