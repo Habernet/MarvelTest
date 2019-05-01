@@ -2,40 +2,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test Marvel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Firebase link -->
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.0.js"
-        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <title>The MARVELous App</title>
 </head>
 
 <body>
-    <button class="btn btn-primary" id="submit">Character search </button>
-    <!-- <div class="card">
-        <h5 class="card-header text-center">
-            HULK
-        </h5>
-        <img class="card-img-top" src="https://media.giphy.com/media/aS8ypUweGOXMA/giphy.gif" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 id="demo">Welcome to the MARVELous App</h1>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Power Points:</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-        </ul>
-        <div class="card-body">
-            <a href="#" class="card-link">Call to Action</a>
+        <div class="row justify-content-center">
+            <h4 id="tagline">Start a gif fight between two MARVEL characters</h4>
         </div>
-    </div> -->
+        <br>
+        <div class="row justify-content-center">
+            <form class="form-inline">
+                <button id="start-fight" type="submit">START FIGHT</button>
+            </form>
+        </div>
+        <br>
+        <div id="giphy-div"></div>
+        <br>
+        <div id="character-div"></div>
 
-   
-    <script src="assets/javascript/main.js"></script>
+        <!-- CARD LAYOUT - FPO -->
+        <div class="card-group" id="character-cards">
+            <!-- <div class="card">
+                <h5 class="card-header text-center">
+                    HULK
+                </h5>
+                <img class="card-img-top" src="https://media.giphy.com/media/aS8ypUweGOXMA/giphy.gif"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary winner">I chose this character to win!</button>
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header text-center">
+                    HULK
+                </h5>
+                <img class="card-img-top" src="https://media.giphy.com/media/aS8ypUweGOXMA/giphy.gif"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary winner">I chose this character to win!</button>
+                </div>
+            </div> -->
+        </div>
+    </div><!-- Container Close -->
+
+    <!-- Video BG -->
+    <div class="fullscreen-bg">
+        <video muted autoplay poster="assets/MarvelIntro.mp4" class="fullscreen-bg__video">
+            <source src="./assets/images/MarvelIntro.mp4" type="video/mp4">
+        </video>
+    </div>
+    <button class="btn btn-primary" id="submit">Character search </button>
+
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script rel="javascript" src="assets/javascript/main.js"></script>
 </body>
 
 </html>

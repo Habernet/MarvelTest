@@ -6,18 +6,52 @@ $(document).ready(function () {
         var cardDescription = snapshot.description;
         var cardBattleCreds = snapshot.battlecred;
         var cardIMG = snapshot.gif;
+        // create a div class card
+        var card = $("<div>").addClass("card");
+        // create an h5 class card-header text-center...set the text to cardName
+        var header = $("<h5>").addClass("card-header text-center").text(cardName);
+        // create an img class card-img-top and set the src to cardIMG
+        var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
+        // create div with class card-body
+        var cardbody = $("<div>").addClass("card-body");
+        // create a p with class card-text and set the text to cardDescription
+        var paragraph = $("<p>").addClass("card-text").text(cardDescription);
+               // create a button with class winner and create a data-name and set that equal to cardName
+        var btn = $("<button>").addClass("winner").attr("data-name", cardName);
 
-        // Create a card with class _____ and data-name = cardName
-        // set the card aspects according to the above variables
-        // append it to the div on the page
+        cardbody.append(paragraph);
+        card.append(header, img, cardbody);
+        $("#character-cards").append(card);
+
+
+
+
+        // <div class="card">
+        //   <h5 class="card-header text-center">
+        //     HULK
+        //   </h5>
+        //   <img class="card-img-top" src="https://media.giphy.com/media/aS8ypUweGOXMA/giphy.gif" alt="Card image cap">
+        //   <div class="card-body">
+        //     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        //       content.</p>
+        //   </div>
+        //   <div class="card-body">
+        //   <h5>Battle creds here!</h5>
+        //   </div>
+        // </div>
     }
 
-
+    // List of characters we know have descriptions in Marvel.
     var characters = [
-        "Spider-Man", "Thor", "Hulk", "Iron-Man", "Wolverine", "Thanos",
-        "Loki", "Magneto", "Cyclops", "Superman", "Black-Widow"
+        "Spider-Man", "Thor", "Hulk", "Wolverine", "Thanos",
+        "Loki", "Magneto", "Cyclops", "Superman", "Black-Widow", "DeadPool", "Iron-Man", "Doctor-Strange", "Captain-America", "Black-Panther"
     ];
-
+    // Marvel Key
+    const marvelKey = "3825528115714235769b996819f21ef0";
+    // Giphy Key
+    const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
+    // Variable for keeping track of how many characters have been chosen
+    var numOfChars = 0;
 
     // Initialize Firebase
     var config = {
@@ -31,16 +65,15 @@ $(document).ready(function () {
     firebase.initializeApp(config);
     database = firebase.database();
 
-    // Marvel Key
-    const marvelKey = "3825528115714235769b996819f21ef0";
-    // Giphy Key
-    const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
-
 
     $("#submit").on("click", (e) => {
         e.preventDefault();
+
+        //If numOfChars < 2
+        //      do the stuff
+        //      at end of stuff increment numOfChars by 1
         // Choose a random character from the pool that we know have descriptions.
-        var charIndex = Math.floor(Math.random() * 9);
+        var charIndex = Math.floor(Math.random() * 15);
         var chartoSearch = characters[charIndex];
         console.log(chartoSearch);
 
@@ -48,7 +81,9 @@ $(document).ready(function () {
         database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
             if (snapshot.exists()) {
                 var snap = snapshot.val(); // Why doesn't this work??
-                console.log("IT WORKED! " + snap);
+                snap = snap[Object.keys(snap)[0]]
+                console.log("IT WORKED! ",  snap);
+                createCharCard(snap);
                 // Call createCharCard and pass it the character node in firebase
 
 
@@ -94,7 +129,7 @@ $(document).ready(function () {
     })
 
     // Define on-click for class of cards, use data-name
-    $(".charcard").on("click", (e) => {
+    $(".winner").on("click", (e) => {
         // This card was chosen to win the battle!
         // Increment the battlecred by one!
         // Hide the other card, make a call to Marvel to post some comics they are in!?
