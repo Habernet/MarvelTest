@@ -11,9 +11,10 @@ $(document).ready(function () {
         var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
-        var btn = $("<button>").addClass("winner").attr("data-name", cardName);
+        var creds = $("<h3>").text(cardBattleCreds)
+        var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
 
-        cardbody.append(paragraph, creds, cardBattleCreds);
+        cardbody.append(paragraph, btn, creds);
         card.append(header, img, cardbody);
         $("#character-cards").append(card);
         // Add Battle Creds!
