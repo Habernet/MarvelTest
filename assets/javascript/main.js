@@ -100,7 +100,6 @@ $(document).ready(function () {
 
     $("#start-fight").on("click", (e) => {
         e.preventDefault();
-
         while (numOfChars < 2) {
             gameLoop();
         }
@@ -110,9 +109,28 @@ $(document).ready(function () {
     $(".winner").on("click", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
+        var nameToUpdate = $(this).data-name;
+        console.log("click worked!" + nameToUpdate);
         // use the data name of THIS to go into firebase and update their battle creds
-        // Update this
+        database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot =>{
+            var snap = snapshot.val();
+            console.log("Snap to update", snap);
+            // databse.ref("characters/") 
+        })        
+        // Update this on the page
+        // timeout starts...after ten seconds:
+        // numOfChars = 0
+        // remove both cards from the screen and call gameloop() under while loop
 
     })
 
 })
+
+
+
+
+// TO DO
+// 1. Still have to account for getting the same characters twice!
+// ^^ Create an array to hold the characters on screen, write code in game loop that if the chosen character is already on the screen, choose again
+// Update the while loop the be length of array < 2;
+// 2. Write winner on click function!
