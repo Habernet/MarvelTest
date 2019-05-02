@@ -123,7 +123,9 @@ $(document).ready(function () {
             database.ref("characters/" + key).update({ battlecred: credsToUpdate});
         })
         database.ref("characters/").on("value", (snapshot) => {
-            console.log(snapshot);
+            console.log(snapshot.val());
+            var snapshot = snapshot.val();
+
         })
 
         // Update the battlecreds on the page
