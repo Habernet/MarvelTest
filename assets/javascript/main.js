@@ -109,7 +109,7 @@ $(document).ready(function () {
     $("body").on("click", ".winner", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
-        var nameToUpdate = $(this).data-name;
+        var nameToUpdate = $(this).attr("data-name");
         console.log("click worked!" + nameToUpdate);
         // use the data name of THIS to go into firebase and update their battle creds
         database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot =>{
@@ -134,3 +134,4 @@ $(document).ready(function () {
 // ^^ Create an array to hold the characters on screen, write code in game loop that if the chosen character is already on the screen, choose again
 // Update the while loop the be length of array < 2;
 // 2. Write winner on click function!
+// 3. Look at GIPHY Api...limit based on rating and cyclops is not marvel cyclops?
