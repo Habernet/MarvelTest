@@ -74,7 +74,7 @@ $(document).ready(function () {
     // List of characters we know have descriptions in Marvel.
     var characters = [
         "Spider-Man", "Thor", "Hulk", "Wolverine", "Thanos",
-        "Loki", "Magneto", "Cyclops", "Deadpool"
+        "Loki", "Magneto", "Cyclops", "DeadPool"
     ];
 
     // Marvel Key
@@ -113,13 +113,13 @@ $(document).ready(function () {
         database.ref("characters/").orderByChild("name").equalTo(nameToUpdate).once("value", snapshot =>{
             var snap = snapshot.val();
             console.log("snap", snap);
-            var key = Object.keys(snap);
+            var key = Object.keys(snap)[0];
             console.log("Key", key)
             var credsToUpdate = snap[Object.keys(snap)[0]].battlecred;
             console.log("creds before", credsToUpdate)
             credsToUpdate++;
             console.log("creds after", credsToUpdate)
-            db.ref("characters/" + key).update({ battlecred: credsToUpdate});
+            database.ref("characters/" + key).update({ battlecred: credsToUpdate});
         })        
         // Update this on the page
         // timeout starts...after ten seconds:
