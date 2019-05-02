@@ -155,18 +155,10 @@ $(document).ready(function () {
             // RESET FUNCTIONALITY
             setTimeout(reset, 5000);
         })
-
-
-
     })
-
 })
 
-
-
-
 // TO DO
-// 2. Write winner on click function!
 // 3. Look at GIPHY Api...limit based on rating and cyclops is not marvel cyclops?
 // 4. README!!!
 
