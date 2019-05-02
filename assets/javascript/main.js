@@ -128,7 +128,6 @@ $(document).ready(function () {
     }
 
     $("#start-fight").on("click", (e) => {
-        console.log('Click worked');
         e.preventDefault();
         chooseCharsAndGame();
     })
