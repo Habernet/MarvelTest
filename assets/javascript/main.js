@@ -63,7 +63,7 @@ $(document).ready(function () {
                             name: chartoSearch,
                             gif: gifURL
                         }
-                        database.ref("characters/").push(charObject);
+                        database.ref("characters/").push(charObject)
                         // Load the characters card based on the calls made // Does this need changing?
                         // It should load based on the object? We could create an object and push that to DB and then also give it to the function?
                         createCharCard(charObject);
@@ -84,7 +84,6 @@ $(document).ready(function () {
     // Giphy Key
     const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
     // Variable for keeping track of how many characters have been chosen
-    var numOfChars = 0;
 
     // Initialize Firebase
     var config = {
@@ -101,6 +100,7 @@ $(document).ready(function () {
 
     $("#start-fight").on("click", (e) => {
         e.preventDefault();
+        var numOfChars = 0;
 
         while (numOfChars < 2) {
             gameLoop();
