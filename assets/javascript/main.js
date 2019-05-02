@@ -108,12 +108,18 @@ $(document).ready(function () {
     $("body").on("click", ".winner", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
+        // Get the cred of current char and add one.
         var nameToUpdate = $(e.target).data("name");
-        // use the data name of THIS to go into firebase and update their battle creds
         database.ref("characters/").orderByChild("name").equalTo(nameToUpdate).once("value", snapshot =>{
             var snap = snapshot.val();
-            console.log("Snap to update", snap);
-            // databse.ref("characters/") 
+            console.log("snap", snap);
+            var key = Object.keys(snap);
+            console.log("Key", key)
+            var credsToUpdate = snap[Object.keys(snap)[0]].battlecred;
+            console.log("creds before", credsToUpdate)
+            credsToUpdate++;
+            console.log("creds after", credsToUpdate)
+            db.ref("characters/" + key).update({ battlecred: credsToUpdate});
         })        
         // Update this on the page
         // timeout starts...after ten seconds:
