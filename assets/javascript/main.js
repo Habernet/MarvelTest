@@ -12,7 +12,7 @@ $(document).ready(function () {
     // Giphy Key
     const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
     // Array for keeping track of how many characters have been chosen
-    var numOfChars = []
+    var charsOnScreen = []
 
 
     // Initialize Firebase
@@ -46,7 +46,7 @@ $(document).ready(function () {
         $("#character-cards").append(card);
 
         // Add character to the array of current characters
-        numOfChars.push(cardName);
+        charsOnScreen.push(cardName);
 
 
     };
@@ -54,9 +54,9 @@ $(document).ready(function () {
     function gameLoop() {
         var charIndex = Math.floor(Math.random() * characters.length);
         var chartoSearch = characters[charIndex];
-        while (numOfChars.includes(chartoSearch)){
-            var charIndex = Math.floor(Math.random() * characters.length);
-            var chartoSearch = characters[charIndex];
+        while (charsOnScreen.includes(chartoSearch)){
+            charIndex = Math.floor(Math.random() * characters.length);
+            chartoSearch = characters[charIndex];
         }
 
         // Check firebase to see if character exists
@@ -108,7 +108,7 @@ $(document).ready(function () {
     $("#start-fight").on("click", (e) => {
         console.log('Click worked');
         e.preventDefault();
-        while (numOfChars.length < 2) {
+        while (charsOnScreen.length < 2) {
             gameLoop();
         }
     })
