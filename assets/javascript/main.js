@@ -102,7 +102,7 @@ $(document).ready(function () {
     $("#start-fight").on("click", (e) => {
         console.log('Click worked');
         e.preventDefault();
-        if (charsOnScreen.length = 2) {
+        if (charsOnScreen.length == 2) {
             var charIndex = Math.floor(Math.random() * characters.length);
             var charOne = characters[charIndex];
             while (charsOnScreen.includes(charOne)) {
