@@ -51,16 +51,10 @@ $(document).ready(function () {
 
     };
 
-    function gameLoop() {
-        var charIndex = Math.floor(Math.random() * characters.length);
-        var chartoSearch = characters[charIndex];
-        while (charsOnScreen.includes(chartoSearch)){
-            charIndex = Math.floor(Math.random() * characters.length);
-            chartoSearch = characters[charIndex];
-        }
-
+    function gameLoop(charToSearch) {
+        
         // Check firebase to see if character exists
-        database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
+        database.ref("characters/").orderByChild("name").equalTo(charToSearch).once("value", snapshot => {
             if (snapshot.exists()) {
                 var snap = snapshot.val();
                 snap = snap[Object.keys(snap)[0]]
@@ -68,9 +62,9 @@ $(document).ready(function () {
             } else {
                 // Create the character based on calls
                 // Marvel Query 
-                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + chartoSearch + "&limit=2&apikey=" + marvelKey;
+                var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + charToSearch + "&limit=2&apikey=" + marvelKey;
                 // Giphy Query 
-                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + chartoSearch + "&limit=1&api_key=" + giphyKey;
+                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + charToSearch + "&limit=1&api_key=" + giphyKey;
 
                 $.ajax({
                     url: marvelQuery,
@@ -94,10 +88,10 @@ $(document).ready(function () {
                         var charToPush = {
                             description: description,
                             battlecred: battleCred,
-                            name: chartoSearch,
+                            name: charToSearch,
                             gif: gifURL
                         }
-                        database.ref("characters/").push({ charToPush });
+                        database.ref("characters/").push(charToPush);
                         createCharCard(charToPush);
                     }).catch(err => console.log(err))
                 }).catch(err => console.log(err))
@@ -108,9 +102,22 @@ $(document).ready(function () {
     $("#start-fight").on("click", (e) => {
         console.log('Click worked');
         e.preventDefault();
-        while (charsOnScreen.length < 2) {
-            gameLoop();
+        var charIndex = Math.floor(Math.random() * characters.length);
+        var charOne = characters[charIndex];
+        while (charsOnScreen.includes(charOne)){
+            charIndex = Math.floor(Math.random() * characters.length);
+            charOne = characters[charIndex];
         }
+        charsOnScreen.push(charOne);
+        charIndex = Math.floor(Math.random() * characters.length);
+        var charTwo = characters[charIndex];
+        while (charsOnScreen.includes(charTwo)){
+            charIndex = Math.floor(Math.random() * characters.length);
+            charTwo = characters[charIndex];
+        }
+        charsOnScreen.push(charTwo);
+        gameLoop(charOne);
+        gameLoop(charTwo);
     })
 
     // Define on click for the winner button
