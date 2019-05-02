@@ -110,6 +110,7 @@ $(document).ready(function () {
         // Change the background of the winner card? Maybe?
         console.log(this);
         console.log($(this));
+        console.log(e.target);
         var nameToUpdate = this.attr("data-name");
         console.log("click worked!", nameToUpdate);
         // use the data name of THIS to go into firebase and update their battle creds
