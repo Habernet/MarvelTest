@@ -106,7 +106,7 @@ $(document).ready(function () {
     })
 
     // Define on click for the winner button
-    $(".card").on("click", ".winner", (e) => {
+    $(".card-body").on("click", ".winner", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
         var nameToUpdate = $(this).data-name;
