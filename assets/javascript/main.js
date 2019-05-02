@@ -11,13 +11,13 @@ $(document).ready(function () {
         var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
-        var creds = $("<h3>").text(cardName + "has been favorited in battle "+ cardBattleCreds + "times!")
+        var creds = $("<h3>").text(cardName + "has been favorited in battle "+ cardBattleCreds + "times");
         var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
 
         cardbody.append(paragraph, btn, creds);
         card.append(header, img, cardbody);
         $("#character-cards").append(card);
-        numOfChars++;
+        // Add Battle Creds!
     };
 
     function gameLoop() {
@@ -57,20 +57,19 @@ $(document).ready(function () {
                         var battleCred = 0;
 
                         // Create object to push to database
-                        var charObject = {
+                        database.ref("characters/").push({
                             description: description,
                             battlecred: battleCred,
                             name: chartoSearch,
                             gif: gifURL
-                        }
-                        database.ref("characters/").push(charObject)
-                        // Load the characters card based on the calls made // Does this need changing?
-                        // It should load based on the object? We could create an object and push that to DB and then also give it to the function?
-                        createCharCard(charObject);
+                        });
+                        // Load the characters card based on the calls made
+                        createCharCard(snap);
                     }).catch(err => console.log(err))
                 }).catch(err => console.log(err))
             }
         });
+        numOfChars++;
     }
 
     // List of characters we know have descriptions in Marvel.
@@ -84,6 +83,7 @@ $(document).ready(function () {
     // Giphy Key
     const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
     // Variable for keeping track of how many characters have been chosen
+    var numOfChars = 0;
 
     // Initialize Firebase
     var config = {
@@ -100,7 +100,6 @@ $(document).ready(function () {
 
     $("#start-fight").on("click", (e) => {
         e.preventDefault();
-        var numOfChars = 0;
 
         while (numOfChars < 2) {
             gameLoop();
