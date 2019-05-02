@@ -7,11 +7,11 @@ $(document).ready(function () {
         var cardBattleCreds = snapshot.battlecred;
         var cardIMG = snapshot.gif;
         var card = $("<div>").addClass("card");
-        var header = $("<h5>").addClass("card-header text-center").text(cardName);
+        var header = $("<h3>").addClass("card-header text-center").text(cardName);
         var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
-        var creds = $("<h3>").text( cardName + " has been favorited in battle " + cardBattleCreds + " times!")
+        var creds = $("<h5>").text( cardName + " has been favorited in battle " + cardBattleCreds + " times!")
         var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
 
         cardbody.append(paragraph, btn, creds);
