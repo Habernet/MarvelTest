@@ -47,8 +47,6 @@ $(document).ready(function () {
 
         // Add character to the array of current characters
         charsOnScreen.push(cardName);
-
-
     };
 
     function gameLoop(charToSearch) {
@@ -99,9 +97,7 @@ $(document).ready(function () {
         });
     }
 
-    $("#start-fight").on("click", (e) => {
-        console.log('Click worked');
-        e.preventDefault();
+    function chooseCharsAndGame() {
         if (charsOnScreen.length == 0) {
             var charIndex = Math.floor(Math.random() * characters.length);
             var charOne = characters[charIndex];
@@ -121,6 +117,20 @@ $(document).ready(function () {
             gameLoop(charTwo);
         }
 
+    }
+    
+    function reset(){
+        // remove characters off the page based on class
+            // call
+        $(".card").remove();
+        charsOnScreen = [];
+        chooseCharsAndGame();
+    }
+
+    $("#start-fight").on("click", (e) => {
+        console.log('Click worked');
+        e.preventDefault();
+        chooseCharsAndGame();
     })
 
     // Define on click for the winner button
@@ -143,12 +153,8 @@ $(document).ready(function () {
             database.ref("characters/" + key).update({ battlecred: credsToUpdate });
             // Update the DOM with the incremented battlecred
             $("#" + nameToUpdate).text(nameToUpdate + " was chosen to win! " + "They have been favorited to win in battle " + credsToUpdate + " times!");
-            // setTimeout(gameLoop(), 5)
-            // $(".winner").remove();
-            // numOfChars = 0;
-            // timeout starts...after ten seconds:
-            // numOfChars = 0
-            // remove both cards from the screen and call gameloop() under while loop
+            // RESET FUNCTIONALITY
+            setTimeout(reset(), 4000);
 
         })
 
