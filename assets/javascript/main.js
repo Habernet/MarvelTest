@@ -11,7 +11,7 @@ $(document).ready(function () {
     const marvelKey = "3825528115714235769b996819f21ef0";
     // Giphy Key
     const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
-    // Variable for keeping track of how many characters have been chosen
+    // Array for keeping track of how many characters have been chosen
     var numOfChars = []
 
 
@@ -48,13 +48,14 @@ $(document).ready(function () {
         // Add character to the array of current characters
         numOfChars.push(cardName);
 
+
     };
 
     function gameLoop() {
-        var charIndex = Math.floor(Math.random() * 9);
+        var charIndex = Math.floor(Math.random() * characters.length);
         var chartoSearch = characters[charIndex];
-        while (numOfChars.includes(chartoSearch)) {
-            var charIndex = Math.floor(Math.random() * 9);
+        while (numOfChars.includes(chartoSearch)){
+            var charIndex = Math.floor(Math.random() * characters.length);
             var chartoSearch = characters[charIndex];
         }
 
@@ -96,7 +97,7 @@ $(document).ready(function () {
                             name: chartoSearch,
                             gif: gifURL
                         }
-                        database.ref("characters/").push({charToPush});
+                        database.ref("characters/").push({ charToPush });
                         createCharCard(charToPush);
                     }).catch(err => console.log(err))
                 }).catch(err => console.log(err))
