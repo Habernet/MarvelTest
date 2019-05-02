@@ -122,7 +122,10 @@ $(document).ready(function () {
             // Update the DB with the key and the new creds
             database.ref("characters/" + key).update({ battlecred: credsToUpdate });
             // Update the DOM with the incremented battlecred
-            $("#" + nameToUpdate).text(credsToUpdate);
+            $("#" + nameToUpdate).text(nameToUpdate + " was chosen to win! " + "They have been favorited to win in battle " + credsToUpdate + " times!");
+            // setTimeout(gameLoop(), 5)
+            // $(".winner").remove();
+            // numOfChars = 0;
             // timeout starts...after ten seconds:
             // numOfChars = 0
             // remove both cards from the screen and call gameloop() under while loop
