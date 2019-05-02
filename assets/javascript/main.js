@@ -11,7 +11,7 @@ $(document).ready(function () {
         var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
-        var creds = $("<h3>").text(cardName + "has been favorited in battle "+ cardBattleCreds + "times");
+        var creds = $("<h3>").text( cardName + " has been favorited in battle " + cardBattleCreds + " times!")
         var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
 
         cardbody.append(paragraph, btn, creds);
@@ -111,7 +111,7 @@ $(document).ready(function () {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
         // use the data name of THIS to go into firebase and update their battle creds
-        // Update this on screen and use a modal or something to show that they won?
+        // Update this
 
     })
 
