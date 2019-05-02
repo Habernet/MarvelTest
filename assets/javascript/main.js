@@ -11,7 +11,7 @@ $(document).ready(function () {
         var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
-        var creds = $("<h5>").text( cardName + " has been favorited in battle " + cardBattleCreds + " times!")
+        var creds = $("<h5>").attr("id", cardName).text(cardName + " has been favorited in battle " + cardBattleCreds + " times!")
         var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
 
         cardbody.append(paragraph, btn, creds);
@@ -112,7 +112,7 @@ $(document).ready(function () {
         // Get the winner
         var nameToUpdate = $(e.target).data("name");
         // Get the child based on the character name
-        database.ref("characters/").orderByChild("name").equalTo(nameToUpdate).once("value", snapshot =>{
+        database.ref("characters/").orderByChild("name").equalTo(nameToUpdate).once("value", snapshot => {
             var snap = snapshot.val();
             // Get the key for that entry so we can update it
             var key = Object.keys(snap)[0];
@@ -120,18 +120,16 @@ $(document).ready(function () {
             var credsToUpdate = snap[Object.keys(snap)[0]].battlecred;
             credsToUpdate++;
             // Update the DB with the key and the new creds
-            database.ref("characters/" + key).update({ battlecred: credsToUpdate});
-        })
-        database.ref("characters/").on("value", (snapshot) => {
-            console.log(snapshot.val());
-            var snapshot = snapshot.val();
+            database.ref("characters/" + key).update({ battlecred: credsToUpdate });
+            // Update the DOM with the incremented battlecred
+            $("#" + nameToUpdate).text(credsToUpdate);
+            // timeout starts...after ten seconds:
+            // numOfChars = 0
+            // remove both cards from the screen and call gameloop() under while loop
 
         })
 
-        // Update the battlecreds on the page
-        // timeout starts...after ten seconds:
-        // numOfChars = 0
-        // remove both cards from the screen and call gameloop() under while loop
+
 
     })
 
