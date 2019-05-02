@@ -11,13 +11,13 @@ $(document).ready(function () {
         var img = $("<img>").addClass("card-img-top").attr("src", cardIMG);
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
-        var creds = $("<h3>").text(cardBattleCreds)
+        var creds = $("<h3>").text(cardName + "has been favorited in battle "+ cardBattleCreds + "times!")
         var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
 
         cardbody.append(paragraph, btn, creds);
         card.append(header, img, cardbody);
         $("#character-cards").append(card);
-        // Add Battle Creds!
+        numOfChars++;
     };
 
     function gameLoop() {
@@ -57,19 +57,20 @@ $(document).ready(function () {
                         var battleCred = 0;
 
                         // Create object to push to database
-                        database.ref("characters/").push({
+                        var charObject = {
                             description: description,
                             battlecred: battleCred,
                             name: chartoSearch,
                             gif: gifURL
-                        });
-                        // Load the characters card based on the calls made
-                        createCharCard(snap);
+                        }
+                        database.ref("characters/").push(charObject);
+                        // Load the characters card based on the calls made // Does this need changing?
+                        // It should load based on the object? We could create an object and push that to DB and then also give it to the function?
+                        createCharCard(charObject);
                     }).catch(err => console.log(err))
                 }).catch(err => console.log(err))
             }
         });
-        numOfChars++;
     }
 
     // List of characters we know have descriptions in Marvel.
@@ -104,8 +105,15 @@ $(document).ready(function () {
         while (numOfChars < 2) {
             gameLoop();
         }
-        // Hide the submit button
-        $("start-fight").hide();
+    })
+
+    // Define on click for the winner button
+    $(".winner").on("click", (e) => {
+        e.preventDefault();
+        // Change the background of the winner card? Maybe?
+        // use the data name of THIS to go into firebase and update their battle creds
+        // Update this on screen and use a modal or something to show that they won?
 
     })
+
 })
