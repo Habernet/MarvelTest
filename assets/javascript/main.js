@@ -108,11 +108,9 @@ $(document).ready(function () {
     $("body").on("click", ".winner", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
-        console.log(e.target);
         var nameToUpdate = $(e.target).data("name");
-        console.log("click worked!", nameToUpdate);
         // use the data name of THIS to go into firebase and update their battle creds
-        database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot =>{
+        database.ref("characters/").orderByChild("name").equalTo(nameToUpdate).once("value", snapshot =>{
             var snap = snapshot.val();
             console.log("Snap to update", snap);
             // databse.ref("characters/") 
