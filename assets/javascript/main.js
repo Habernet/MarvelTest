@@ -154,7 +154,7 @@ $(document).ready(function () {
             // Update the DOM with the incremented battlecred
             $("#" + nameToUpdate).text(nameToUpdate + " was chosen to win! " + "They have been favorited to win in battle " + credsToUpdate + " times!");
             // RESET FUNCTIONALITY
-            setTimeout(reset(), 5000);
+            setTimeout(reset, 5000);
         })
 
 
