@@ -107,7 +107,7 @@ $(document).ready(function () {
     $("#start-fight").on("click", (e) => {
         console.log('Click worked');
         e.preventDefault();
-        while (length.numOfChars < 2) {
+        while (numOfChars.length < 2) {
             gameLoop();
         }
     })
