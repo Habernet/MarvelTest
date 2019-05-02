@@ -108,20 +108,25 @@ $(document).ready(function () {
     $("body").on("click", ".winner", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
-        // Get the cred of current char and add one.
+
+        // Get the winner
         var nameToUpdate = $(e.target).data("name");
+        // Get the child based on the character name
         database.ref("characters/").orderByChild("name").equalTo(nameToUpdate).once("value", snapshot =>{
             var snap = snapshot.val();
-            console.log("snap", snap);
+            // Get the key for that entry so we can update it
             var key = Object.keys(snap)[0];
-            console.log("Key", key)
+            // Get the battlecreds and increment it
             var credsToUpdate = snap[Object.keys(snap)[0]].battlecred;
-            console.log("creds before", credsToUpdate)
             credsToUpdate++;
-            console.log("creds after", credsToUpdate)
+            // Update the DB with the key and the new creds
             database.ref("characters/" + key).update({ battlecred: credsToUpdate});
-        })        
-        // Update this on the page
+        })
+        database.ref("characters/").on("value", (snapshot) => {
+            console.log(snapshot);
+        })
+
+        // Update the battlecreds on the page
         // timeout starts...after ten seconds:
         // numOfChars = 0
         // remove both cards from the screen and call gameloop() under while loop
