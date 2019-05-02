@@ -53,7 +53,10 @@ $(document).ready(function () {
     function gameLoop() {
         var charIndex = Math.floor(Math.random() * 9);
         var chartoSearch = characters[charIndex];
-        console.log(chartoSearch);
+        while (numOfChars.includes(chartoSearch)) {
+            var charIndex = Math.floor(Math.random() * 9);
+            var chartoSearch = characters[charIndex];
+        }
 
         // Check firebase to see if character exists
         database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot => {
@@ -87,14 +90,14 @@ $(document).ready(function () {
                         var battleCred = 0;
 
                         // Create object to push to database
-                        database.ref("characters/").push({
+                        var charToPush = {
                             description: description,
                             battlecred: battleCred,
                             name: chartoSearch,
                             gif: gifURL
-                        });
-                        // Load the characters card based on the calls made
-                        createCharCard(snap);
+                        }
+                        database.ref("characters/").push({charToPush});
+                        createCharCard(charToPush);
                     }).catch(err => console.log(err))
                 }).catch(err => console.log(err))
             }
