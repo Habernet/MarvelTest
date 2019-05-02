@@ -52,7 +52,7 @@ $(document).ready(function () {
     };
 
     function gameLoop(charToSearch) {
-        
+
         // Check firebase to see if character exists
         database.ref("characters/").orderByChild("name").equalTo(charToSearch).once("value", snapshot => {
             if (snapshot.exists()) {
@@ -102,22 +102,25 @@ $(document).ready(function () {
     $("#start-fight").on("click", (e) => {
         console.log('Click worked');
         e.preventDefault();
-        var charIndex = Math.floor(Math.random() * characters.length);
-        var charOne = characters[charIndex];
-        while (charsOnScreen.includes(charOne)){
+        if (charsOnScreen.length = 2) {
+            var charIndex = Math.floor(Math.random() * characters.length);
+            var charOne = characters[charIndex];
+            while (charsOnScreen.includes(charOne)) {
+                charIndex = Math.floor(Math.random() * characters.length);
+                charOne = characters[charIndex];
+            }
+            charsOnScreen.push(charOne);
             charIndex = Math.floor(Math.random() * characters.length);
-            charOne = characters[charIndex];
+            var charTwo = characters[charIndex];
+            while (charsOnScreen.includes(charTwo)) {
+                charIndex = Math.floor(Math.random() * characters.length);
+                charTwo = characters[charIndex];
+            }
+            charsOnScreen.push(charTwo);
+            gameLoop(charOne);
+            gameLoop(charTwo);
         }
-        charsOnScreen.push(charOne);
-        charIndex = Math.floor(Math.random() * characters.length);
-        var charTwo = characters[charIndex];
-        while (charsOnScreen.includes(charTwo)){
-            charIndex = Math.floor(Math.random() * characters.length);
-            charTwo = characters[charIndex];
-        }
-        charsOnScreen.push(charTwo);
-        gameLoop(charOne);
-        gameLoop(charTwo);
+
     })
 
     // Define on click for the winner button
@@ -159,11 +162,7 @@ $(document).ready(function () {
 
 
 // TO DO
-// 1. Still have to account for getting the same characters twice!
-// ^^ Create an array to hold the characters on screen, write code in game loop that if the chosen character is already on the screen, choose again
-// Update the while loop the be length of array < 2;
 // 2. Write winner on click function!
 // 3. Look at GIPHY Api...limit based on rating and cyclops is not marvel cyclops?
 // 4. README!!!
 
-// 5. Push object instead...so you can pass object to create card and it works
