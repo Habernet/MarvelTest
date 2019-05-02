@@ -1,6 +1,33 @@
 
 $(document).ready(function () {
 
+    // List of characters we know have descriptions in Marvel.
+    var characters = [
+        "Spider-Man", "Thor", "Hulk", "Wolverine", "Thanos",
+        "Loki", "Magneto", "Cyclops", "DeadPool"
+    ];
+
+    // Marvel Key
+    const marvelKey = "3825528115714235769b996819f21ef0";
+    // Giphy Key
+    const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
+    // Variable for keeping track of how many characters have been chosen
+    var numOfChars = []
+
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBuVunkkdUj9Lh7ghjP2JmLXJLI42K55jQ",
+        authDomain: "marveltest-9558a.firebaseapp.com",
+        databaseURL: "https://marveltest-9558a.firebaseio.com",
+        projectId: "marveltest-9558a",
+        storageBucket: "marveltest-9558a.appspot.com",
+        messagingSenderId: "557399982087"
+    };
+    firebase.initializeApp(config);
+    database = firebase.database();
+
+
     function createCharCard(snapshot) {
         var cardName = snapshot.name;
         var cardDescription = snapshot.description;
@@ -17,6 +44,10 @@ $(document).ready(function () {
         cardbody.append(paragraph, btn, creds);
         card.append(header, img, cardbody);
         $("#character-cards").append(card);
+
+        // Add character to the array of current characters
+        numOfChars.push(cardName);
+
     };
 
     function gameLoop() {
@@ -68,38 +99,11 @@ $(document).ready(function () {
                 }).catch(err => console.log(err))
             }
         });
-        numOfChars++;
     }
-
-    // List of characters we know have descriptions in Marvel.
-    var characters = [
-        "Spider-Man", "Thor", "Hulk", "Wolverine", "Thanos",
-        "Loki", "Magneto", "Cyclops", "DeadPool"
-    ];
-
-    // Marvel Key
-    const marvelKey = "3825528115714235769b996819f21ef0";
-    // Giphy Key
-    const giphyKey = "F0y8OeTPpYSZkVLz2fLvNXdxqtpfpPSp";
-    // Variable for keeping track of how many characters have been chosen
-    var numOfChars = 0;
-
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBuVunkkdUj9Lh7ghjP2JmLXJLI42K55jQ",
-        authDomain: "marveltest-9558a.firebaseapp.com",
-        databaseURL: "https://marveltest-9558a.firebaseio.com",
-        projectId: "marveltest-9558a",
-        storageBucket: "marveltest-9558a.appspot.com",
-        messagingSenderId: "557399982087"
-    };
-    firebase.initializeApp(config);
-    database = firebase.database();
-
 
     $("#start-fight").on("click", (e) => {
         e.preventDefault();
-        while (numOfChars < 2) {
+        while (length.numOfChars < 2) {
             gameLoop();
         }
     })
@@ -108,6 +112,7 @@ $(document).ready(function () {
     $("body").on("click", ".winner", (e) => {
         e.preventDefault();
         // Change the background of the winner card? Maybe?
+        // Hide the winner buttons?
 
         // Get the winner
         var nameToUpdate = $(e.target).data("name");
@@ -147,3 +152,6 @@ $(document).ready(function () {
 // Update the while loop the be length of array < 2;
 // 2. Write winner on click function!
 // 3. Look at GIPHY Api...limit based on rating and cyclops is not marvel cyclops?
+// 4. README!!!
+
+// 5. Push object instead...so you can pass object to create card and it works
