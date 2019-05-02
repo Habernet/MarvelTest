@@ -17,7 +17,6 @@ $(document).ready(function () {
         cardbody.append(paragraph, btn, creds);
         card.append(header, img, cardbody);
         $("#character-cards").append(card);
-        // Add Battle Creds!
     };
 
     function gameLoop() {
@@ -108,9 +107,8 @@ $(document).ready(function () {
     // Define on click for the winner button
     $("body").on("click", ".winner", (e) => {
         e.preventDefault();
-        console.log($(this));
         // Change the background of the winner card? Maybe?
-        var nameToUpdate = $(this).attr("data-name");
+        var nameToUpdate = e.attr("data-name");
         console.log("click worked!", nameToUpdate);
         // use the data name of THIS to go into firebase and update their battle creds
         database.ref("characters/").orderByChild("name").equalTo(chartoSearch).once("value", snapshot =>{
