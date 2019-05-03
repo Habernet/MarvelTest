@@ -4,7 +4,7 @@ $(document).ready(function () {
     // List of characters we know have descriptions in Marvel.
     var characters = [
         "Spider-Man", "Thor", "Hulk", "Wolverine", "Thanos",
-        "Loki", "Magneto", "Cyclops", "DeadPool"
+        "Loki", "Magneto", "Cyclops", "DeadPool", "Groot", "Gambit", "Daredevil", "Mystique"
     ];
 
     // Marvel Key
