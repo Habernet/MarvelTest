@@ -39,7 +39,7 @@ $(document).ready(function () {
         var cardbody = $("<div>").addClass("card-body");
         var paragraph = $("<p>").addClass("card-text").text(cardDescription);
         var creds = $("<h5>").attr("id", cardName).text(cardName + " has been favorited in battle " + cardBattleCreds + " times!")
-        var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("WINNER");
+        var btn = $("<button>").addClass("winner").attr("data-name", cardName).text("CHOOSE WINNER");
 
         cardbody.append(paragraph, btn, creds);
         card.append(header, img, cardbody);
@@ -115,12 +115,11 @@ $(document).ready(function () {
             gameLoop(charOne);
             gameLoop(charTwo);
         }
-
     }
     
     function reset(){
         // remove characters off the page based on class
-            // call
+        // Call chooseCharsAndGame();
         $(".card").remove();
         charsOnScreen = [];
         chooseCharsAndGame();
@@ -156,8 +155,3 @@ $(document).ready(function () {
         })
     })
 })
-
-// TO DO
-// 3. Look at GIPHY Api...limit based on rating and cyclops is not marvel cyclops?
-// 4. README!!!
-
