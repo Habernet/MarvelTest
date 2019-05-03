@@ -62,7 +62,7 @@ $(document).ready(function () {
                 // Marvel Query 
                 var marvelQuery = "https://gateway.marvel.com:443/v1/public/characters?name=" + charToSearch + "&limit=2&apikey=" + marvelKey;
                 // Giphy Query 
-                var giphyQuery = "https://api.giphy.com/v1/gifs/random?&api_key=" + giphyKey + "&tag=" + charToSearch;
+                var giphyQuery = "https://api.giphy.com/v1/gifs/search?q=" + charToSearch + "&limit=1&api_key=" + giphyKey;
 
                 $.ajax({
                     url: marvelQuery,
