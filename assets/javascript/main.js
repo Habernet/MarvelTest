@@ -127,6 +127,7 @@ $(document).ready(function () {
 
     $("#start-fight").on("click", (e) => {
         e.preventDefault();
+        $("#filler").remove();
         chooseCharsAndGame();
     })
 
