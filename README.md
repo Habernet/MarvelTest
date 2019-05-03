@@ -1,60 +1,46 @@
-# MARVELous!
+## MARVELous!
 This is a simple chat app that allows people to discuss/debate which of two random characters (pulled from the Marvel universe) would win in a 1 vs 1 fight! The users will then be able to choose their favorite in that circumstance.
 
 ## Motivation
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+This app is meant for Stan Lee-inites who want to chat with other Marvel enthusiasts and watch their favorite Marvel characters go head-to-head.
 
 ## Build status
-Build status of continus integration i.e. travis, appveyor etc. Ex. - 
+
 
 [![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
 
-## Code style
-If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
- 
+
 ## Screenshots
 Include logo/demo screenshot etc.
 
-## Tech/framework used
-
 
 <b>Built with</b>
- Firebase
- CSS/HTML
- Javascript/Jquery
+Firebase
+CSS/HTML
+Javascript/Jquery
 
 ## Features
-What makes your project stand out?
+Persistent data utilizing Firebase
+Eloquent CSS and HTML
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
 
 ## API Reference
+https://developer.marvel.com/docs
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-## Tests
-Describe and show how to run the tests with code examples.
 
 ## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+
+Upon entering page, user clicks Start Session to initiate app
+Chat window opens, joins chat with another user
+Users can discuss and debate between two Marvel characters before choosing which to select for a battle.
+After battle, user can chose to play another round, choose a new opponent, or leave the browser.
 
 ## Contribute
 
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
+Contributions are welcome! They will be screened before approval.
 
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
-
-#### Anything else that seems useful
-
-## License
-A short snippet describing the license (MIT, Apache etc)
 
 MIT © [Yourname]()
